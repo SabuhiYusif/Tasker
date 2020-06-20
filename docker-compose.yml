@@ -1,9 +1,7 @@
 version: '2.1'
 services:
     tasker-backend:
-        image: tasker-backend:latest
+        image: jasb1025/tasker-backend:0.0.1
         container_name: tasker-backend
-        #volumes:
-        #    - ./build/libs:/home/app
         ports:
             - "8080:8080"
