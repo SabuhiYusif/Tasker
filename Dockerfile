@@ -1,3 +1,4 @@
+# An image configuration for SpringBoot application
 FROM openjdk:8-jdk-alpine
 RUN apk update && apk add bash
 RUN mkdir /home/app
