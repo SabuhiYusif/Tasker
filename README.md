@@ -16,3 +16,4 @@ Set Up:
 2.Inside local clone run docker-compose up command
 
 That is it :)
+
