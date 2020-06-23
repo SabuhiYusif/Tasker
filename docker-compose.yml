@@ -6,18 +6,11 @@ services:
         ports:
             - "8080:8080"
     postgres:
-        image: postgres:10
+        image: postgres:10.13
         environment:
             - POSTGRES_USER=tasker
             - POSTGRES_PASSWORD=tasker
             - POSTGRES_DB=tasker
-    postgres_client:
-        image: dpage/pgadmin4:latest
-        environment:
-            - PGADMIN_DEFAULT_EMAIL=admin@example.com
-            - PGADMIN_DEFAULT_PASSWORD=admin
         ports:
-            - "5433:80"
-        volumes:
-            - ./servers.json:/pgadmin4/servers.json
+            - "5432:5432"
 
