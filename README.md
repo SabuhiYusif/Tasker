@@ -28,11 +28,13 @@ This is needed for using pgAdmin Postgres client tool.
                   "MaintenanceDB": "tasker"
               }
           }
-      }'''
+}
+```
 
-2. Inside local clone run `docker-compose up` command
+3. Inside local clone run `docker-compose up` command
 
 To use pgAdmin open http://localhost:5433
+Application serves at http://localhost:8080
 
 That is it :)  
 
