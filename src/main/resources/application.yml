@@ -1,0 +1,8 @@
+spring:
+  devtools:
+    remote:
+      secret: mysecret
+  datasource:
+    url: jdbc:postgresql://postgres:5432/taskerdb?useSSL=false
+    username: tasker
+    password: tasker
