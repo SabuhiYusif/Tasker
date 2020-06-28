@@ -1,48 +1,41 @@
 CREATE SCHEMA tasker;
 
-CREATE TABLE tasker.boards (
-                               "id" SERIAL PRIMARY KEY,
-                               "title" varchar,
-                               "created_at" timestamp,
-                               "description" varchar
+CREATE TABLE tasker.boards
+(
+    id          uuid PRIMARY KEY,
+    title       varchar(50),
+    created_at  timestamptz,
+    description varchar(2000)
 );
 
-CREATE TABLE tasker.lists (
-                              "id" SERIAL PRIMARY KEY,
-                              "title" varchar,
-                              "board_id" int
+CREATE TABLE tasker.columns
+(
+    id       uuid PRIMARY KEY,
+    title    varchar(50),
+    board_id uuid REFERENCES boards (id) ON DELETE CASCADE
 );
 
-CREATE TABLE tasker.cards (
-                              "id" SERIAL PRIMARY KEY,
-                              "list_id" int,
-                              "board_id" int,
-                              "title" varchar,
-                              "description" varchar,
-                              "priority" int,
-                              "due_date" date
+CREATE TABLE tasker.cards
+(
+    id          uuid PRIMARY KEY,
+    column_id   uuid REFERENCES columns (id) ON DELETE CASCADE,
+    board_id    uuid REFERENCES boards (id) ON DELETE CASCADE,
+    title       varchar(50),
+    description varchar(2000),
+    priority    int,
+    due_date    date
 );
 
-CREATE TABLE tasker.labels (
-                               "id" SERIAL PRIMARY KEY,
-                               "board_id" int,
-                               "title" varchar,
-                               "color" varchar
+CREATE TABLE tasker.board_labels
+(
+    id       uuid PRIMARY KEY,
+    board_id uuid REFERENCES boards (id) ON DELETE CASCADE,
+    title    varchar(50),
+    color    varchar
 );
 
-CREATE TABLE tasker.cards_labels (
-                                     "card_id" int,
-                                     "label_id" int
+CREATE TABLE tasker.cards_labels
+(
+    card_id  uuid REFERENCES cards (id) ON DELETE CASCADE,
+    label_id uuid REFERENCES board_labels (id) ON DELETE CASCADE
 );
-
-ALTER TABLE tasker.lists ADD FOREIGN KEY ("board_id") REFERENCES boards ("id");
-
-ALTER TABLE tasker.cards ADD FOREIGN KEY ("board_id") REFERENCES boards ("id");
-
-ALTER TABLE tasker.cards ADD FOREIGN KEY ("list_id") REFERENCES lists ("id");
-
-ALTER TABLE tasker.labels ADD FOREIGN KEY ("board_id") REFERENCES boards ("id");
-
-ALTER TABLE tasker.cards_labels ADD FOREIGN KEY ("label_id") REFERENCES labels ("id");
-
-ALTER TABLE tasker.cards_labels ADD FOREIGN KEY ("card_id") REFERENCES cards ("id");
