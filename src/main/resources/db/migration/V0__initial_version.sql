@@ -3,35 +3,35 @@ CREATE SCHEMA tasker;
 CREATE TABLE tasker.boards
 (
     id          uuid PRIMARY KEY,
-    title       varchar(50),
-    created_at  timestamptz,
+    title       varchar(50) NOT NULL,
+    created_at  timestamptz NOT NULL,
     description varchar(2000)
 );
 
-CREATE TABLE tasker.columns
+CREATE TABLE tasker.board_columns
 (
     id       uuid PRIMARY KEY,
-    title    varchar(50),
+    title    varchar(50) NOT NULL,
     board_id uuid REFERENCES boards (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tasker.cards
 (
     id          uuid PRIMARY KEY,
-    column_id   uuid REFERENCES columns (id) ON DELETE CASCADE,
+    column_id   uuid REFERENCES board_columns (id) ON DELETE CASCADE,
     board_id    uuid REFERENCES boards (id) ON DELETE CASCADE,
-    title       varchar(50),
+    title       varchar(50) NOT NULL,
     description varchar(2000),
     priority    int,
-    due_date    date
+    due_date    timestamptz
 );
 
 CREATE TABLE tasker.board_labels
 (
     id       uuid PRIMARY KEY,
     board_id uuid REFERENCES boards (id) ON DELETE CASCADE,
-    title    varchar(50),
-    color    varchar
+    title    varchar(50) NOT NULL,
+    color    varchar(50)
 );
 
 CREATE TABLE tasker.cards_labels
