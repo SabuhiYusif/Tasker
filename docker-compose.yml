@@ -1,10 +1,12 @@
-version: '2.1'
+version: '3.8'
 services:
     tasker-backend:
-        image: jasb1025/tasker-backend:0.0.1
+        image: jasb1025/tasker-backend:latest
         container_name: tasker-backend
         ports:
             - "8080:8080"
+        depends_on:
+            - "postgres"
     postgres:
         image: postgres:10.13
         environment:
