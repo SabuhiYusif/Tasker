@@ -1,3 +1,9 @@
 language: java
 jdk:
   - openjdk8
+servies:
+  - docker
+script:
+  - env
+  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    echo "test"; fi
