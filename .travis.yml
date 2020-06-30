@@ -6,4 +6,6 @@ servies:
 script:
   - env
   - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-    echo "test"; fi
+    echo "$(DOCKER_PASSWORD)" | docker login -u "$(DOCKER_PASSWORD)" -password-stdin;
+    docker image build -t jasb1025/$(DOCKER_IMAGE_NAME):latest .;
+    docker push jasb1025/$(DOCKER_IMAGE_NAME):latest; fi
