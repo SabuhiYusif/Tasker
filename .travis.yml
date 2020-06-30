@@ -5,7 +5,7 @@ servies:
   - docker
 script:
   - env
-  - if [ "$TRAVIS_BRANCH" = "javid_5" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+  - if [ "$TRAVIS_BRANCH" = "javidy_5" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     echo "$(DOCKER_PASSWORD)" | docker login -u "$(DOCKER_PASSWORD)" -password-stdin;
     docker image build -t jasb1025/$(DOCKER_IMAGE_NAME):latest .;
     docker push jasb1025/$(DOCKER_IMAGE_NAME):latest; fi
