@@ -7,4 +7,6 @@ script:
   - env
   - if [ "$TRAVIS_BRANCH" = "javidy_5" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin;
+    docker image build -t $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:latest .;
+    docker push $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:latest;
     fi
