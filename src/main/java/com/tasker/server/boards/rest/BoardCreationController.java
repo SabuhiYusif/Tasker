@@ -16,7 +16,7 @@ public class BoardCreationController {
     private BoardService boardService;
 
     @PostMapping("/boards")
-    ResponseEntity<?> createBoard(@Valid @RequestBody BoardCreationRequest request) {
+    ResponseEntity<String> createBoard(@Valid @RequestBody BoardCreationRequest request) {
         boardService.create(request);
 
         return ResponseEntity.ok("Board Created");
