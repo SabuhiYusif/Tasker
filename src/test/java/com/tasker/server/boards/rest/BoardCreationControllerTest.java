@@ -59,7 +59,6 @@ public class BoardCreationControllerTest {
             .andExpect(content().json("{\"title\":\"size must be between 0 and 50\",\"statusCode\":400}"));
     }
 
-
     @Test
     public void it_returns_error_if_description_is_too_long() throws Exception {
         String longDescription = RandomStringUtils.randomAlphanumeric(2001);
