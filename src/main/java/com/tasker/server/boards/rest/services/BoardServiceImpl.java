@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -26,4 +27,15 @@ public class BoardServiceImpl implements BoardService {
 
         boardDao.create(board);
     }
+
+    @Override
+    public List<Board> fetchBoards() {
+        return boardDao.fetchBoards();
+    }
+
+    @Override
+    public Board fetchBoard(UUID boardId) {
+        return boardDao.fetchBoard(boardId);
+    }
+
 }
