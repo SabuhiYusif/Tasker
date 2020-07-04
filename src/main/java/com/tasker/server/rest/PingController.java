@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestRestController {
+public class PingController {
 
-    @GetMapping("/home")
-    public String home(){
-        return "Hello World2!";
+    @GetMapping("/ping")
+    public String home() {
+        return "OK";
     }
 }
