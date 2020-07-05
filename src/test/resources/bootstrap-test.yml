@@ -1,0 +1,6 @@
+embedded:
+  postgresql:
+    enabled: true
+    dockerImage: postgres:10.13
+    user: tasker
+    password: tasker
