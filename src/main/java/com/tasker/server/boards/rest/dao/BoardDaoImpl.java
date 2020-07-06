@@ -22,7 +22,7 @@ public class BoardDaoImpl implements BoardDao {
     @Transactional
     @Override
     public void create(Board board) {
-        jdbcTemplate.update("INSERT INTO boards(id, title, created_at, description) VALUES (?, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO tasker.boards(id, title, created_at, description) VALUES (?, ?, ?, ?)",
             board.getId(), board.getTitle(), board.getCreatedAt(), board.getDescription());
     }
 

@@ -12,14 +12,14 @@ CREATE TABLE tasker.board_columns
 (
     id       uuid PRIMARY KEY,
     title    varchar(50) NOT NULL,
-    board_id uuid REFERENCES boards (id) ON DELETE CASCADE
+    board_id uuid REFERENCES tasker.boards (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tasker.cards
 (
     id          uuid PRIMARY KEY,
-    column_id   uuid REFERENCES board_columns (id) ON DELETE CASCADE,
-    board_id    uuid REFERENCES boards (id) ON DELETE CASCADE,
+    column_id   uuid REFERENCES tasker.board_columns (id) ON DELETE CASCADE,
+    board_id    uuid REFERENCES tasker.boards (id) ON DELETE CASCADE,
     title       varchar(50) NOT NULL,
     description varchar(2000),
     priority    int,
@@ -29,13 +29,14 @@ CREATE TABLE tasker.cards
 CREATE TABLE tasker.board_labels
 (
     id       uuid PRIMARY KEY,
-    board_id uuid REFERENCES boards (id) ON DELETE CASCADE,
+    board_id uuid REFERENCES tasker.boards (id) ON DELETE CASCADE,
     title    varchar(50) NOT NULL,
     color    varchar(50)
 );
 
 CREATE TABLE tasker.cards_labels
 (
-    card_id  uuid REFERENCES cards (id) ON DELETE CASCADE,
-    label_id uuid REFERENCES board_labels (id) ON DELETE CASCADE
+    card_id  uuid REFERENCES tasker.cards (id) ON DELETE CASCADE,
+    label_id uuid REFERENCES tasker.board_labels (id) ON DELETE CASCADE
 );
+
