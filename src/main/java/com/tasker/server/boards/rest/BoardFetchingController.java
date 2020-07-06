@@ -2,11 +2,10 @@ package com.tasker.server.boards.rest;
 
 import com.tasker.server.boards.Board;
 import com.tasker.server.boards.rest.services.BoardService;
-import org.springframework.http.ResponseEntity;
+import com.tasker.server.rest.RecordNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,14 +16,20 @@ public class BoardFetchingController {
     BoardService boardService;
 
     @GetMapping("/boards")
-    List<Board> fetchBoards() {
-        return boardService.fetchBoards();
+    List<Board> fetchAll() {
+        return boardService.fetchAll();
     }
 
-    @GetMapping("/boards/{boardId}")
-    Board fetchBoard(@PathVariable UUID boardId) {
+    @GetMapping("/boards/{id}")
+    Board fetch(@PathVariable String id) {
 
-        return boardService.fetchBoard(boardId);
+        UUID boardId = UUID.fromString(id);
+        Board board = boardService.fetch(boardId);
+
+        if (board == null) {
+            throw new RecordNotFoundException("Board not found for id - " + id);
+        }
+        return boardService.fetch(boardId);
     }
 
 }

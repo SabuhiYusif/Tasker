@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface BoardDao {
     void create(Board board);
 
-    List<Board> fetchBoards();
+    List<Board> fetchAll();
 
-    Board fetchBoard(UUID boardId);
+    Board fetch(UUID id);
 }

@@ -10,7 +10,7 @@ public interface BoardService {
 
     void create(BoardCreationRequest request);
 
-    List<Board> fetchBoards();
+    List<Board> fetchAll();
 
-    Board fetchBoard(UUID boardId);
+    Board fetch(UUID id);
 }

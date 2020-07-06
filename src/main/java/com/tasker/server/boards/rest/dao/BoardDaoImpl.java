@@ -28,21 +28,30 @@ public class BoardDaoImpl implements BoardDao {
 
     @Transactional
     @Override
-    public List<Board> fetchBoards() {
+    public List<Board> fetchAll() {
 
         String sql = "SELECT id, title, description, created_at FROM tasker.boards";
-        return  jdbcTemplate.query(sql, new BoardRowMapper());
+        BoardRowMapper mapper = new BoardRowMapper();
+        return  jdbcTemplate.query(sql, mapper);
     }
 
     @Override
-    public Board fetchBoard(UUID boardId) {
+    public Board fetch(UUID id) {
 
         String sql = "SELECT id, title, description, created_at FROM tasker.boards WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[] {boardId}, new BoardRowMapper());
+        BoardRowMapper mapper = new BoardRowMapper();
+        List<Board> boards = jdbcTemplate.query(sql,
+                new Object[] {id},
+                mapper);
+
+        if (boards.isEmpty()) {
+            return null;
+        } else {
+            return boards.get(0);
+        }
     }
 
     private static final class BoardRowMapper implements RowMapper<Board> {
-
 
         @Override
         public Board mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -29,13 +29,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> fetchBoards() {
-        return boardDao.fetchBoards();
+    public List<Board> fetchAll() {
+        return boardDao.fetchAll();
     }
 
     @Override
-    public Board fetchBoard(UUID boardId) {
-        return boardDao.fetchBoard(boardId);
+    public Board fetch(UUID id) {
+        return boardDao.fetch(id);
     }
 
 }
