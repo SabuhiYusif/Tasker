@@ -18,6 +18,7 @@ public class BoardDaoImpl implements BoardDao {
 
     @Resource
     private JdbcTemplate jdbcTemplate;
+    private BoardRowMapper mapper = new BoardRowMapper();
 
     @Transactional
     @Override
@@ -31,7 +32,6 @@ public class BoardDaoImpl implements BoardDao {
     public List<Board> fetchAll() {
 
         String sql = "SELECT id, title, description, created_at FROM tasker.boards";
-        BoardRowMapper mapper = new BoardRowMapper();
         return  jdbcTemplate.query(sql, mapper);
     }
 
@@ -39,10 +39,7 @@ public class BoardDaoImpl implements BoardDao {
     public Board fetch(UUID id) {
 
         String sql = "SELECT id, title, description, created_at FROM tasker.boards WHERE id = ?";
-        BoardRowMapper mapper = new BoardRowMapper();
-        List<Board> boards = jdbcTemplate.query(sql,
-                new Object[] {id},
-                mapper);
+        List<Board> boards = jdbcTemplate.query(sql, new Object[] {id}, mapper);
 
         if (boards.isEmpty()) {
             return null;
