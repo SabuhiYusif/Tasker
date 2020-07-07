@@ -1,8 +1,8 @@
 package com.tasker.server.boards.rest.services;
 
-import com.tasker.server.boards.rest.BoardCreationRequest;
+import com.tasker.server.boards.Board;
 
 public interface BoardService {
 
-    void create(BoardCreationRequest request);
+    void create(Board board);
 }
