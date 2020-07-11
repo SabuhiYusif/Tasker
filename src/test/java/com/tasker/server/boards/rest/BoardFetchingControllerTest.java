@@ -62,7 +62,7 @@ public class BoardFetchingControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"id\":\"0e37df36-f698-11e6-8dd4-cb9ced3df976\"," +
                                                       "\"title\":\"Some Title\"," +
-                                                       "\"createdAt\":\"2020-10-09T22:00:00.000+00:00\"," +
+                                                       "\"createdAt\":\"2020-10-10T00:00:00.000+00:00\"," +
                                                         "\"description\":\"Some Description\"}", true));
     }
 
