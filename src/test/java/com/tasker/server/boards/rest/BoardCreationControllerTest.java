@@ -20,7 +20,6 @@ public class BoardCreationControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    @Transactional
     public void it_creates_boards() throws Exception {
 
             this.mockMvc.perform(
