@@ -1,23 +1,15 @@
 package com.tasker.server.boards.rest;
 
-import com.tasker.server.boards.Board;
 import com.tasker.server.conf.RestTest;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
-import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
 
 import javax.annotation.Resource;
 
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,7 +18,6 @@ public class BoardFetchingControllerTest {
 
     @Resource
     private MockMvc mockMvc;
-    private Board board;
 
     @Test
     public void it_checks_if_mediatype_is_json() throws Exception {
@@ -46,7 +37,7 @@ public class BoardFetchingControllerTest {
     }
 
     @Test
-    public void it_returns400_bad_request() throws Exception {
+    public void it_returns_error_if_id_is_invalid() throws Exception {
         String id = "blabla";
         this.mockMvc.perform(
                 get("/boards/" + id))
@@ -56,7 +47,7 @@ public class BoardFetchingControllerTest {
 
 
     @Test
-    public void it_checks_response_of_fetched_by_id() throws Exception {
+    public void it_successfully_returns_a_board() throws Exception {
         this.mockMvc.perform(
                 get("/boards/0e37df36-f698-11e6-8dd4-cb9ced3df976" ))
                 .andExpect(status().isOk())
@@ -67,26 +58,25 @@ public class BoardFetchingControllerTest {
     }
 
     @Test
-    public void it_checks_response_of_fetched_all() throws Exception {
-
-        this.mockMvc.perform(
-                get("/boards" ))
-                .andExpect(status().isOk())
-                .andExpect(content().json(
-                        "[" +
+    public void it_successfully_returns_all_boards() throws Exception {
+            this.mockMvc.perform(
+                    get("/boards"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().json(
+                            "[" +
                                     "{" +
                                     "\"id\":\"0e37df36-f698-11e6-8dd4-cb9ced3df976\"," +
                                     "\"title\":\"Some Title\"," +
                                     "\"createdAt\":\"2020-10-10T00:00:00.000+00:00\"," +
                                     "\"description\":\"Some Description\"" +
-                                     "}," +
-                                     "{" +
-                                     "\"id\":\"0e37df36-f698-11e6-8dd4-cb9ced3df977\"," +
-                                     "\"title\":\"Some Title 2\"," +
-                                     "\"createdAt\":\"2020-07-11T00:00:00.000+00:00\"," +
-                                     "\"description\":\"Some Description 2\"" +
-                                      "}" +
-                                  "]",true));
-    }
+                                    "}," +
+                                    "{" +
+                                    "\"id\":\"0e37df36-f698-11e6-8dd4-cb9ced3df977\"," +
+                                    "\"title\":\"Some Title 2\"," +
+                                    "\"createdAt\":\"2020-07-11T00:00:00.000+00:00\"," +
+                                    "\"description\":\"Some Description 2\"" +
+                                    "}" +
+                                    "]", true));
+        }
 
 }
