@@ -5,6 +5,8 @@ import com.tasker.server.boards.rest.dao.BoardDao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -17,4 +19,15 @@ public class BoardServiceImpl implements BoardService {
 
         boardDao.create(board);
     }
+
+    @Override
+    public List<Board> fetchAll() {
+        return boardDao.fetchAll();
+    }
+
+    @Override
+    public Board fetch(UUID id) {
+        return boardDao.fetch(id);
+    }
+
 }

@@ -20,6 +20,7 @@ public class BoardCreationControllerTest {
 
     @Test
     public void it_creates_boards() throws Exception {
+
         this.mockMvc.perform(
             post("/boards")
                 .contentType(MediaType.APPLICATION_JSON)
