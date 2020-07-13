@@ -39,4 +39,3 @@ CREATE TABLE tasker.cards_labels
     card_id  uuid REFERENCES tasker.cards (id) ON DELETE CASCADE,
     label_id uuid REFERENCES tasker.board_labels (id) ON DELETE CASCADE
 );
-

@@ -4,7 +4,6 @@ import com.tasker.server.conf.RestTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
 
 import javax.annotation.Resource;
@@ -22,11 +21,11 @@ public class BoardCreationControllerTest {
     @Test
     public void it_creates_boards() throws Exception {
 
-            this.mockMvc.perform(
-                    post("/boards")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content("{\"title\":\"Some Title\"}")
-            ).andExpect(status().isCreated());
+        this.mockMvc.perform(
+            post("/boards")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\":\"Some Title\"}")
+        ).andExpect(status().isCreated());
     }
 
     @Test
