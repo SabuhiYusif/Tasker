@@ -48,6 +48,14 @@ public class BoardDaoImpl implements BoardDao {
         }
     }
 
+    @Override
+    public void delete(UUID id) {
+        String sql = "DELETE FROM tasker.boards WHERE id = ?";
+        Object[] args = new Object[] {id};
+
+        jdbcTemplate.update(sql, args);
+    }
+
     private static final class BoardRowMapper implements RowMapper<Board> {
 
         @Override

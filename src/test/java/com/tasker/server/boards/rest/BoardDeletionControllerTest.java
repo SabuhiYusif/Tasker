@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RestTest
-public class BoardDeletingControllerTest {
+public class BoardDeletionControllerTest {
 
     @Resource
     private MockMvc mockMvc;
@@ -37,38 +37,10 @@ public class BoardDeletingControllerTest {
             .andExpect(content().json("{\"message\":\"Invalid UUID string: " + id + "\",\"statusCode\":400}", true));
     }
 
-
     @Test
     public void it_successfully_deletes_a_board() throws Exception {
         this.mockMvc.perform(
-            delete("/boards/0e37df36-f698-11e6-8dd4-cb9ced3df976"))
-            .andExpect(status().isOk())
-            .andExpect(content().json("{\"id\":\"0e37df36-f698-11e6-8dd4-cb9ced3df976\"," +
-                "\"title\":\"Some Title\"," +
-                "\"createdAt\":\"2020-10-10T00:00:00.000+00:00\"," +
-                "\"description\":\"Some Description\"}", true));
+            delete("/boards/0e37df36-f698-11e6-8dd4-cb9ced3df977"))
+            .andExpect(status().isOk());
     }
-
-    @Test
-    public void it_successfully_returns_all_boards() throws Exception {
-        this.mockMvc.perform(
-            get("/boards"))
-            .andExpect(status().isOk())
-            .andExpect(content().json(
-                "[" +
-                    "{" +
-                    "\"id\":\"0e37df36-f698-11e6-8dd4-cb9ced3df976\"," +
-                    "\"title\":\"Some Title\"," +
-                    "\"createdAt\":\"2020-10-10T00:00:00.000+00:00\"," +
-                    "\"description\":\"Some Description\"" +
-                    "}," +
-                    "{" +
-                    "\"id\":\"0e37df36-f698-11e6-8dd4-cb9ced3df977\"," +
-                    "\"title\":\"Some Title 2\"," +
-                    "\"createdAt\":\"2020-07-11T00:00:00.000+00:00\"," +
-                    "\"description\":\"Some Description 2\"" +
-                    "}" +
-                    "]", true));
-    }
-
 }

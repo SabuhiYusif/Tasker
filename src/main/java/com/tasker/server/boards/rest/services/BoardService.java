@@ -11,4 +11,6 @@ public interface BoardService {
     Board fetch(UUID id);
 
     void create(Board board);
+
+    void delete(UUID id);
 }
