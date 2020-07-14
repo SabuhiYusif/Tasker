@@ -36,6 +36,7 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    @Transactional
     public Board fetch(UUID id) {
 
         String sql = "SELECT id, title, description, created_at FROM tasker.boards WHERE id = ?";
@@ -49,6 +50,7 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    @Transactional
     public void delete(UUID id) {
         String sql = "DELETE FROM tasker.boards WHERE id = ?";
         Object[] args = new Object[] {id};
