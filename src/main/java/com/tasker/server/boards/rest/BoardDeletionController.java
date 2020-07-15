@@ -18,7 +18,7 @@ public class BoardDeletionController {
     BoardService boardService;
 
     @DeleteMapping("/boards/{id}")
-    ResponseEntity<?> delete(@PathVariable String id) {
+    ResponseEntity<String> delete(@PathVariable String id) {
 
         UUID boardId = UUID.fromString(id);
         Board board = boardService.fetch(boardId);
