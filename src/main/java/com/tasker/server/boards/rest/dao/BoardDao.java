@@ -11,4 +11,6 @@ public interface BoardDao {
     List<Board> fetchAll();
 
     Board fetch(UUID id);
+
+    void delete(UUID id);
 }

@@ -36,6 +36,7 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    @Transactional
     public Board fetch(UUID id) {
 
         String sql = "SELECT id, title, description, created_at FROM tasker.boards WHERE id = ?";
@@ -46,6 +47,15 @@ public class BoardDaoImpl implements BoardDao {
         } else {
             return boards.get(0);
         }
+    }
+
+    @Override
+    @Transactional
+    public void delete(UUID id) {
+        String sql = "DELETE FROM tasker.boards WHERE id = ?";
+        Object[] args = new Object[] {id};
+
+        jdbcTemplate.update(sql, args);
     }
 
     private static final class BoardRowMapper implements RowMapper<Board> {

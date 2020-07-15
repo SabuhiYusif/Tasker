@@ -21,6 +21,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public void delete(UUID id) {
+        boardDao.delete(id);
+    }
+
+    @Override
     public List<Board> fetchAll() {
         return boardDao.fetchAll();
     }
