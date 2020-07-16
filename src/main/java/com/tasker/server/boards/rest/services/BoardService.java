@@ -13,4 +13,6 @@ public interface BoardService {
     void create(Board board);
 
     void delete(UUID id);
+
+    void update(Board board);
 }

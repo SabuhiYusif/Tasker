@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,6 +55,15 @@ public class BoardDaoImpl implements BoardDao {
         Object[] args = new Object[] {id};
 
         jdbcTemplate.update(sql, args);
+    }
+
+    @Override
+    @Transactional
+    public void update(Board board) {
+
+        String sql = "UPDATE tasker.boards SET title = ?, description = ? WHERE id = ?";
+        jdbcTemplate.update(sql,
+            board.getTitle(), board.getDescription(), board.getId());
     }
 
     private static final class BoardRowMapper implements RowMapper<Board> {

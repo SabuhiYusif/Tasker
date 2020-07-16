@@ -3,6 +3,7 @@ package com.tasker.server.boards.rest.services;
 import com.tasker.server.boards.Board;
 import com.tasker.server.boards.rest.dao.BoardDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,13 +17,17 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void create(Board board) {
-
         boardDao.create(board);
     }
 
     @Override
     public void delete(UUID id) {
         boardDao.delete(id);
+    }
+
+    @Override
+    public void update(Board board) {
+        boardDao.update(board);
     }
 
     @Override
