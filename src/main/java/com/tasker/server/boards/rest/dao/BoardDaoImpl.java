@@ -62,8 +62,7 @@ public class BoardDaoImpl implements BoardDao {
     public void update(Board board) {
 
         String sql = "UPDATE tasker.boards SET title = ?, description = ? WHERE id = ?";
-        jdbcTemplate.update(sql,
-            board.getTitle(), board.getDescription(), board.getId());
+        jdbcTemplate.update(sql, board.getTitle(), board.getDescription(), board.getId());
     }
 
     private static final class BoardRowMapper implements RowMapper<Board> {

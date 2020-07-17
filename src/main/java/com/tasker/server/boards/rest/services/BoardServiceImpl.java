@@ -3,7 +3,6 @@ package com.tasker.server.boards.rest.services;
 import com.tasker.server.boards.Board;
 import com.tasker.server.boards.rest.dao.BoardDao;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
