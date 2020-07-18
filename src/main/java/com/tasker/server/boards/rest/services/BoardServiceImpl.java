@@ -16,13 +16,17 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void create(Board board) {
-
         boardDao.create(board);
     }
 
     @Override
     public void delete(UUID id) {
         boardDao.delete(id);
+    }
+
+    @Override
+    public void update(Board board) {
+        boardDao.update(board);
     }
 
     @Override

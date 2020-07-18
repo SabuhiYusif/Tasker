@@ -20,7 +20,7 @@ public class BoardDeletionControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void it_returns_not_found_if_board_does_not_exists() throws Exception {
+    public void it_returns_not_found_if_board_does_not_exist() throws Exception {
         String id = UUID.randomUUID().toString();
         this.mockMvc.perform(
             delete("/boards/" + id))

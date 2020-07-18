@@ -27,7 +27,7 @@ public class BoardFetchingControllerTest {
     }
 
     @Test
-    public void it_returns_not_found_if_board_does_not_exists() throws Exception {
+    public void it_returns_not_found_if_board_does_not_exist() throws Exception {
         String id = UUID.randomUUID().toString();
         this.mockMvc.perform(
             get("/boards/" + id))

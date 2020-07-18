@@ -13,4 +13,6 @@ public interface BoardDao {
     Board fetch(UUID id);
 
     void delete(UUID id);
+
+    void update(Board board);
 }
